@@ -1,22 +1,58 @@
+@font-face {
+  font-family: "grotesk-regular";
+  src: url("../../assets/grotesk-regular.ttf"); /* IE9 Compat Modes */
+}
+@font-face {
+  font-family: "grotesk-medium";
+  src: url("../../assets/grotesk-medium.ttf");
+}
+@font-face {
+  font-family: "grotesk-bold";
+  src: url("../../assets/grotesk-bold.ttf");
+}
 .form_container {
-  border-radius: 20px;
+  border-radius: 25px;
   margin: 15px;
   margin-top: 100px;
   display: flex;
+  padding-top: 20px;
   flex-direction: column;
   align-items: center;
   background-color: hotpink;
+  .select_account{
+    align-self: center;
+  }
   .input_container {
-    padding: 10px;
-    width: 350px;
+    display: flex;
+    margin: 10px;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid rgb(247, 248, 250);
+    background-color: white;
+    width: 90%;
+    border-radius: 20px;
+    padding: 15px;
+  }
+  .input_label {
+    padding-left: 8px;
+    font-size: 15px;
+    font-family: "grotesk-regular";
+    margin-bottom: 15px;
   }
   .input_amount {
-    width: 100%;
-    height: 80px;
-    border-radius: 20px;
-    border: 1px solid rgb(247, 248, 250);
+    align-self: center;
     background-color: rgb(255, 255, 255);
-    padding-left: 15px;
     font-size: 30px;
+    height: 60px;
+    width: 90%;
+    
+  }
+  .submit_button {
+    width: 88%;
+    margin: 10px;
+    border-radius: 25px;
+    height: 70px;
+    background-color: indianred;
+    margin-bottom: 30px;
   }
 }

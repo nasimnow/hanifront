@@ -1,22 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Container,
-  FormControl,
-  FormLabel,
-  Input,
-  FormErrorMessage,
-  Button,
-} from "@chakra-ui/react";
 
-import {
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  DrawerCloseButton,
-} from "@chakra-ui/react";
 
 import Select from "react-select";
 import styles from "../css/add_ledger.module.scss";
@@ -55,8 +38,10 @@ const AddLedger = () => {
     control: (base) => ({
       ...base,
       height: 60,
+      width:300,
       borderRadius: 10,
       minHeight: 50,
+     
     }),
   };
 
@@ -76,7 +61,7 @@ const AddLedger = () => {
     <>
       <div className={styles.form_container}>
         <div className={styles.input_container}>
-          To
+        <h1 className={styles.input_label}>To</h1>
           <Select
             className={styles.select_account}
             value={selectedAccount}
@@ -86,6 +71,7 @@ const AddLedger = () => {
           />
         </div>
         <div className={styles.input_container}>
+          <h1 className={styles.input_label}>Amount</h1>
           <input
             className={styles.input_amount}
             type="number"
@@ -94,9 +80,9 @@ const AddLedger = () => {
             onChange={(e) => setTransferAmount(parseFloat(e.target.value))}
           />
         </div>
-        <Button onClick={handleAddTransfer} colorScheme="teal">
+        <button className={styles.submit_button} onClick={handleAddTransfer}>
           Add
-        </Button>
+        </button>
       </div>
     </>
   );

@@ -7,8 +7,8 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/add-ledger" component={AddLedger} />
-        <Route path="/transfers" component={TransferList} />
+        <Route path="/add" component={AddLedger} />
+        <Route path="/" component={TransferList} />
       </Switch>
     </Router>
   );
