@@ -1,0 +1,63 @@
+@font-face {
+  font-family: "grotesk-regular";
+  src: url("../../assets/grotesk-regular.ttf"); /* IE9 Compat Modes */
+}
+@font-face {
+  font-family: "grotesk-medium";
+  src: url("../../assets/grotesk-medium.ttf");
+}
+@font-face {
+  font-family: "grotesk-bold";
+  src: url("../../assets/grotesk-bold.ttf");
+}
+
+.transfer_row {
+  margin-top: 30px;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .coin_profile {
+    margin-left: 30px;
+    border-radius: 50%;
+    border: 5px solid blue;
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    color: white;
+    font-size: 20px;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+      sans-serif;
+    font-weight: bolder;
+  }
+  .transfer_name_group {
+    display: flex;
+    flex-direction: column;
+    .transfer_name {
+      font-family: "grotesk-bold";
+      margin-left: 10px;
+      font-weight: medium;
+    }
+    .transfer_date {
+      font-family: "grotesk-medium";
+      margin-left: 10px;
+      color: #cdd7df;
+    }
+  }
+  .transfer_amount_credit {
+    font-family: "grotesk-medium";
+    margin-left: auto;
+    font-size: 20px;
+    color: green;
+    margin-right: 40px;
+  }
+  .transfer_amount_debit {
+    font-family: "grotesk-medium";
+    margin-left: auto;
+    color: red;
+    font-size: 20px;
+    margin-right: 40px;
+  }
+}
