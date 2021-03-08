@@ -10,7 +10,16 @@
   font-family: "grotesk-bold";
   src: url("../../assets/grotesk-bold.ttf");
 }
-
+.container{
+  background-image: radial-gradient(50% 50% at 50% 50%, rgba(27,255, 0, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+  background-position: 0px -30vh;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: rgb(247, 248, 250);
+}
 .transfer_row {
   margin-top: 30px;
   width: 100vw;

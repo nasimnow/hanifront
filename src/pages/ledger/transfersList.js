@@ -9,6 +9,7 @@ import {
   Tag,
 } from "@chakra-ui/react";
 import styles from "../css/transfer_list.module.scss";
+import Header from "../components/Header"
 
 const TransferList = () => {
   const db = firebase.firestore();
@@ -36,7 +37,8 @@ const TransferList = () => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
+      <Header/>
       {transfers.map((transfer) => (
         <>
           <div className={styles.transfer_row}>

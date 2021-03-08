@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import Header from "../components/Header"
 
 import Select from "react-select";
 import styles from "../css/add_ledger.module.scss";
@@ -10,7 +10,7 @@ const AddLedger = () => {
   const db = firebase.firestore();
 
   const [accounts, setAccounts] = useState([]);
-  const [selectedAccount, setSeletcedAccount] = useState("null");
+  const [selectedAccount, setSeletcedAccount] = useState(null);
   const [transferAmount, setTransferAmount] = useState("");
 
   //get all saved accounts
@@ -59,7 +59,10 @@ const AddLedger = () => {
 
   return (
     <>
+    <div className={styles.container}>
+    <Header/>
       <div className={styles.form_container}>
+        <div className={styles.title_main}>Transaction</div>
         <div className={styles.input_container}>
         <h1 className={styles.input_label}>To</h1>
           <Select
@@ -81,8 +84,9 @@ const AddLedger = () => {
           />
         </div>
         <button className={styles.submit_button} onClick={handleAddTransfer}>
-          Add
+          Add Transaction
         </button>
+      </div>
       </div>
     </>
   );
