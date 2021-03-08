@@ -12,6 +12,7 @@ const AddLedger = () => {
   const [accounts, setAccounts] = useState([]);
   const [selectedAccount, setSeletcedAccount] = useState(null);
   const [transferAmount, setTransferAmount] = useState("");
+  const [isButtonActive,setIsButtonActive] = useState(false)
 
   //get all saved accounts
   useEffect(() => {
@@ -54,6 +55,12 @@ const AddLedger = () => {
       to: selectedAccount.value,
     };
     const addTransfer = await db.collection("ledger").add(transferObject);
+    setIsButtonActive(true)
+    setTimeout(()=>{
+      setSeletcedAccount(null)
+      setTransferAmount("")
+      setIsButtonActive(false)
+    },2000)
     console.log(addTransfer);
   };
 
@@ -83,9 +90,12 @@ const AddLedger = () => {
             onChange={(e) => setTransferAmount(parseFloat(e.target.value))}
           />
         </div>
-        <button className={styles.submit_button} onClick={handleAddTransfer}>
+       {!isButtonActive ?(<button className={styles.submit_button} onClick={handleAddTransfer}>
           Add Transaction
-        </button>
+        </button>):(
+        <button className={styles.submit_button_active} onClick={handleAddTransfer}>
+          Transaction Completed
+        </button>)}
       </div>
       </div>
     </>

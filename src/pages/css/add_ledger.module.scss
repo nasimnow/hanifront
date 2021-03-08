@@ -80,9 +80,27 @@ input:focus{
     background-color: #defcf1;
     color:#07ba79;
     margin-bottom: 30px;
-    &:hover{
-      background-color: #69f8c4;
+
+  }
+  .submit_button_active{
+    width: 88%;
+    font-family: "grotesk-medium";
+    margin: 10px;
+    border-radius: 25px;
+    height: 70px;
+    background-color: #defcf1;
+    color:#07ba79;
+    margin-bottom: 30px;
+      
       color: white;
+      animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% {
+      background-color: #defcf1;
+    }
+    100% {
+      background-color: #69f8c4;
     }
   }
 }
