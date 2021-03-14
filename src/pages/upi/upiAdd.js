@@ -4,35 +4,18 @@ import Header from "../components/Header"
 import Select from "react-select";
 import styles from "../css/add_ledger.module.scss";
 
-import firebase from "../../firebase";
-
-const AddStock = () => {
-  const db = firebase.firestore();
+const AddLedger = () => {
 
   const [accounts, setAccounts] = useState([]);
-  const [selectedAccount, setSeletcedAccount] = useState(null);
+  const [payeeName,setPayeeName]  = useState("")
+  const [payeeUpi, setPayeeUpi] = useState(null);
   const [transferAmount, setTransferAmount] = useState("");
   const [isButtonActive,setIsButtonActive] = useState(false)
 
-  //get all saved accounts
-  useEffect(() => {
-    const fetchData = async () => {
-      const accountResponse = await db.collection("account").get();
-      const accountsParse = accountResponse.docs.map((account) =>
-        account.data()
-      );
-      const accountsFiltered = accountsParse.map((account) => ({
-        value: account.name,
-        label: account.full_name,
-      }));
-      setAccounts(accountsFiltered);
-    };
-    fetchData();
-  }, []);
 
   //handle account change
   const handleAccountChange = (selectedOption) => {
-    setSeletcedAccount(selectedOption);
+    setPayeeUpi(selectedOption);
   };
 
   const customStyles = {
@@ -48,20 +31,7 @@ const AddStock = () => {
 
   //handle add transfer
   const handleAddTransfer = async () => {
-    console.log({ amount: transferAmount, to: selectedAccount.value });
-    const transferObject = {
-      date: new Date(),
-      amount: transferAmount,
-      to: selectedAccount.value,
-    };
-    const addTransfer = await db.collection("ledger").add(transferObject);
-    setIsButtonActive(true)
-    setTimeout(()=>{
-      setSeletcedAccount(null)
-      setTransferAmount("")
-      setIsButtonActive(false)
-    },2000)
-    console.log(addTransfer);
+    console.log({ amount: transferAmount, to: payeeUpi.value });
   };
 
   return (
@@ -69,16 +39,29 @@ const AddStock = () => {
     <div className={styles.container}>
     <Header/>
       <div className={styles.form_container}>
-        <div className={styles.title_main}>Transaction</div>
+        <div className={styles.title_main}>UPI Payment Link </div>
         <div className={styles.input_container}>
         <h1 className={styles.input_label}>To</h1>
-          <Select
-            className={styles.select_account}
-            value={selectedAccount}
-            options={accounts}
-            styles={customStyles}
-            onChange={handleAccountChange}
+        <div className={styles.input_container}>
+        <h1 className={styles.input_label}>Account Name</h1>
+        <input
+            className={styles.input_name}
+            type="text"
+            placeholder="Name"
+            value={payeeName}
+            onChange={(e) => setPayeeName(e.target.value)}
           />
+          </div>
+          <div className={styles.input_container}>
+        <h1 className={styles.input_label}>UPI Id</h1>
+          <input
+            className={styles.input_upi}
+            type="text"
+            placeholder="yourshop@upi"
+            value={payeeUpi}
+            onChange={(e) => setPayeeUpi(parseInt(e.target.value))}
+          />
+          </div>
         </div>
         <div className={styles.input_container}>
           <h1 className={styles.input_label}>Amount</h1>
@@ -91,7 +74,7 @@ const AddStock = () => {
           />
         </div>
        {!isButtonActive ?(<button className={styles.submit_button} onClick={handleAddTransfer}>
-          Add Transaction
+          Create Link
         </button>):(
         <button className={styles.submit_button_active} onClick={handleAddTransfer}>
           Transaction Completed
@@ -101,4 +84,4 @@ const AddStock = () => {
     </>
   );
 };
-export default AddStock;
+export default AddLedger;

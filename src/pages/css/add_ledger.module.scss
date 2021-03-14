@@ -25,13 +25,22 @@ input:focus{
   min-height: 100vh;
   background-color: rgb(247, 248, 250);
 }
-.title_main{
-  color: #000;
-  font-family: "grotesk-medium";
+.title_group{
+  display: flex;
+  padding: 10px;
   align-self: flex-start;
-  margin-left: 30px;
   margin-bottom: 10px;
+  .title_main{
+    color: rgb(168, 168, 168);
+    font-family: "grotesk-medium";
+    margin-left: 20px;
+   
+  }
+  .active{
+    color: #000;
+  }
 }
+
 .form_container {
   background-color: white;
   border-radius: 25px;
@@ -56,6 +65,17 @@ input:focus{
     border-radius: 20px;
     padding: 15px;
   }
+  .input_container_small {
+    display: flex;
+    margin: 8px;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid rgb(247, 248, 250);
+    background-color: white;
+    width: 90%;
+    border-radius: 20px;
+    padding: 8px;
+  }
   .input_label {
     padding-left: 8px;
     font-size: 15px;
@@ -71,6 +91,22 @@ input:focus{
     width: 90%;
     
   }
+  .input_name {
+    align-self: center;
+    background-color: rgb(255, 255, 255);
+    font-size: 20px;
+    height: 50px;
+    width: 90%;
+    
+  }
+  .input_upi {
+    align-self: center;
+    background-color: rgb(255, 255, 255);
+    font-size: 20px;
+    height: 50px;
+    width: 90%;
+    
+  }
   .submit_button {
     width: 88%;
     font-family: "grotesk-medium";
@@ -81,7 +117,11 @@ input:focus{
     color:#07ba79;
     margin-bottom: 30px;
 
+&:focus{
+  outline: none;
+}
   }
+  
   .submit_button_active{
     width: 88%;
     font-family: "grotesk-medium";
@@ -93,6 +133,9 @@ input:focus{
     margin-bottom: 30px;
     color: white;
     animation: pulse 2s infinite;
+    &:focus{
+      outline: none;
+    }
   }
   @keyframes pulse {
     0% {
@@ -103,3 +146,5 @@ input:focus{
     }
   }
 }
+
+

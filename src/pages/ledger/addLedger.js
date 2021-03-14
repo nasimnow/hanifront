@@ -5,6 +5,7 @@ import Select from "react-select";
 import styles from "../css/add_ledger.module.scss";
 
 import firebase from "../../firebase";
+import { useHistory } from "react-router";
 
 const AddLedger = () => {
   const db = firebase.firestore();
@@ -13,6 +14,8 @@ const AddLedger = () => {
   const [selectedAccount, setSeletcedAccount] = useState(null);
   const [transferAmount, setTransferAmount] = useState("");
   const [isButtonActive,setIsButtonActive] = useState(false)
+
+  const history = useHistory()
 
   //get all saved accounts
   useEffect(() => {
@@ -28,6 +31,11 @@ const AddLedger = () => {
       setAccounts(accountsFiltered);
     };
     fetchData();
+
+    //useffect cleanup
+    return () => {
+      setAccounts({})
+    };
   }, []);
 
   //handle account change
@@ -68,8 +76,12 @@ const AddLedger = () => {
     <>
     <div className={styles.container}>
     <Header/>
+
       <div className={styles.form_container}>
-        <div className={styles.title_main}>Transaction</div>
+        <div className={styles.title_group}>
+        <div className={`${styles.title_main} ${styles.active}`}>Transaction</div>
+        <div onClick={()=>history.push("/addcoin")} className={styles.title_main}>Coin</div>
+        </div>
         <div className={styles.input_container}>
         <h1 className={styles.input_label}>To</h1>
           <Select

@@ -5,7 +5,7 @@ import CoinIcon from "../../assets/coinicon.png"
 
 const Header = ()=>{
   
-    const menuItems = [{name:"Home",link:"/"},{name:"Add",link:"/add"},{name:"Transactions",link:"/transactions"}]
+    const menuItems = [{name:"Home",link:"/"},{name:"Add",link:"/add"},{name:"Coins",link:"/coins"}]
     const history = useHistory()
     const location = useLocation()
     console.log(location.pathname.slice(1,2).toUpperCase()+location.pathname.slice(2))
