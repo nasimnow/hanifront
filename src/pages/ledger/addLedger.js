@@ -65,7 +65,6 @@ const AddLedger = () => {
       date: new Date(),
       amount: transferAmount,
       to: selectedAccount.value,
-      to_name: selectedAccount.label,
     };
     const { data, error } = await supabase
       .from("ledger")

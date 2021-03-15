@@ -30,7 +30,8 @@ const TransferList = () => {
 
       let { data: transferParse, error } = await supabase
         .from("ledger")
-        .select(`*, account(name)`);
+        .select(`*, account(name)`)
+        .order("id", { ascending: false });
 
       setTransfers(transferParse);
     };

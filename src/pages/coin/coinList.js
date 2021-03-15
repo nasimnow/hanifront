@@ -14,7 +14,8 @@ const CoinList = () => {
     const fetchData = async () => {
       const { data: coinParse, error } = await supabase
         .from("coins")
-        .select("*");
+        .select("*")
+        .order("id", { ascending: false });
       setCoins(coinParse);
 
       //get coins price from wazirx api
