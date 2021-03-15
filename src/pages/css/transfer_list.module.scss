@@ -21,7 +21,7 @@
   background-color: rgb(247, 248, 250);
 }
 .transfer_row {
-  margin-top: 30px;
+  margin-top: 20px;
   width: 100vw;
   display: flex;
   flex-direction: row;
@@ -69,4 +69,27 @@
     font-size: 20px;
     margin-right: 40px;
   }
+}
+.pl_header{
+background: -webkit-linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+border-radius: 10px;
+padding: 10px;
+display: flex;
+justify-content: center;
+margin:10px;
+margin-top: 20px;
+width: 85vw;
+height: 120px;
+color: white;
+.title{
+  margin-top: 10px;
+  font-family: "grotesk-bold";
+  font-size: 20px;
+}
+.pl{
+  color: white;
+  font-family: "grotesk-medium";
+  font-size: 30px;
+}
 }

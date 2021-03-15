@@ -6,6 +6,7 @@ import styles from "../css/add_ledger.module.scss";
 
 import firebase from "../../firebase";
 import { useHistory } from "react-router";
+import supabase from "../../supabase";
 
 const AddLedger = () => {
   const db = firebase.firestore();
@@ -20,12 +21,16 @@ const AddLedger = () => {
   //get all saved accounts
   useEffect(() => {
     const fetchData = async () => {
-      const accountResponse = await db.collection("account").get();
-      const accountsParse = accountResponse.docs.map((account) =>
-        account.data()
-      );
+      // const accountResponse = await db.collection("account").get();
+      // const accountsParse = accountResponse.docs.map((account) =>
+      //   account.data()
+      // );
+      let { data: accountsParse, error } = await supabase
+        .from("account")
+        .select("*");
+      console.log(accountsParse);
       const accountsFiltered = accountsParse.map((account) => ({
-        value: account.name,
+        value: account.id,
         label: account.full_name,
       }));
       setAccounts(accountsFiltered);
@@ -60,15 +65,19 @@ const AddLedger = () => {
       date: new Date(),
       amount: transferAmount,
       to: selectedAccount.value,
+      to_name: selectedAccount.label,
     };
-    const addTransfer = await db.collection("ledger").add(transferObject);
+    const { data, error } = await supabase
+      .from("ledger")
+      .insert([transferObject]);
+    console.log(error);
+    // const addTransfer = await db.collection("ledger").add(transferObject);
     setIsButtonActive(true);
     setTimeout(() => {
       setSeletcedAccount(null);
       setTransferAmount("");
       setIsButtonActive(false);
     }, 2000);
-    console.log(addTransfer);
   };
 
   return (
@@ -120,7 +129,7 @@ const AddLedger = () => {
               className={styles.submit_button_active}
               onClick={handleAddTransfer}
             >
-              Transaction Completed
+              Successfully Added👌
             </button>
           )}
         </div>

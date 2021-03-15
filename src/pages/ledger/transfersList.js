@@ -9,7 +9,8 @@ import {
   Tag,
 } from "@chakra-ui/react";
 import styles from "../css/transfer_list.module.scss";
-import Header from "../components/Header"
+import Header from "../components/Header";
+import supabase from "../../supabase";
 
 const TransferList = () => {
   const db = firebase.firestore();
@@ -18,24 +19,27 @@ const TransferList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const transferResponse = await db
-        .collection("ledger")
-        .orderBy("date", "desc")
-        .limit(10)
-        .get();
-      const transferParse = transferResponse.docs.map((account) =>
-        account.data()
-      );
-      console.log(transferParse);
+      // const transferResponse = await db
+      //   .collection("ledger")
+      //   .orderBy("date", "desc")
+      //   .limit(10)
+      //   .get();
+      // const transferParse = transferResponse.docs.map((account) =>
+      //   account.data()
+      // );
+
+      let { data: transferParse, error } = await supabase
+        .from("ledger")
+        .select(`*, account(name)`);
+
       setTransfers(transferParse);
     };
     fetchData();
   }, []);
 
-
   return (
     <div className={styles.container}>
-      <Header/>
+      <Header />
       {transfers.map((transfer) => (
         <>
           <div className={styles.transfer_row}>
@@ -48,13 +52,11 @@ const TransferList = () => {
               </div>
             )}
             <div className={styles.transfer_name_group}>
-              <h1 className={styles.transfer_name}>{transfer.to}</h1>
-              <h1 className={styles.transfer_date}>
-                {transfer.date.toDate().toDateString()}
-              </h1>
+              <h1 className={styles.transfer_name}>{transfer.account.name}</h1>
+              <h1 className={styles.transfer_date}>{transfer.date}</h1>
             </div>
 
-            {transfer.to !== "HANI" ? (
+            {transfer.to !== 10 ? (
               <h1 className={styles.transfer_amount_debit}>
                 -{transfer.amount}
               </h1>

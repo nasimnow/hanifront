@@ -4,12 +4,12 @@ import Header from "../components/Header";
 import Select from "react-select";
 import styles from "../css/add_ledger.module.scss";
 
-import firebase from "../../firebase";
+import supabase from "../../supabase";
 import axios from "axios";
 import { useHistory } from "react-router";
 
 const AddCoin = () => {
-  const db = firebase.firestore();
+  // const db = firebase.firestore();
 
   const [coinsAvailable, setCoinsAvaialable] = useState([]);
   const [selectedCoin, setSeletcedCoin] = useState(null);
@@ -23,7 +23,7 @@ const AddCoin = () => {
   useEffect(() => {
     const fetchData = async () => {
       const stocksResponse = await axios.get(
-        "https://cors-anywhere.herokuapp.com/https://api.wazirx.com/api/v2/tickers"
+        "https://nitinr-cors.herokuapp.com/https://api.wazirx.com/api/v2/tickers"
       );
       const coinsArray = Object.getOwnPropertyNames(stocksResponse.data);
       const coinsModified = coinsArray.map((coin) => ({
@@ -63,7 +63,11 @@ const AddCoin = () => {
       price: coinPrice,
       quantity: coinQuantity,
     };
-    const addTransfer = await db.collection("coins").add(transferObject);
+    // const addTransfer = await db.collection("coins").add(transferObject);
+    const { addTransfer, error } = await supabase
+      .from("coins")
+      .insert([transferObject]);
+
     setIsButtonActive(true);
     setTimeout(() => {
       setSeletcedCoin(null);

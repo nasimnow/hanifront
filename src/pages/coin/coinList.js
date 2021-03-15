@@ -1,43 +1,33 @@
 import React, { useEffect, useState } from "react";
-import firebase from "../../firebase";
+import supabase from "../../supabase";
 
 import styles from "../css/transfer_list.module.scss";
 import Header from "../components/Header";
 import axios from "axios";
 
 const CoinList = () => {
-  const db = firebase.firestore();
-
   const [coins, setCoins] = useState([]);
   const [coinsLive, setCoinsLive] = useState({});
-  const [gotCoins, setGotCoins] = useState(false);
+  const [totalPl, setTotalPl] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
-      const coinsResponse = await db
-        .collection("coins")
-        .orderBy("date", "desc")
-        .limit(10)
-        .get();
-      const coinParse = coinsResponse.docs.map((coin) => ({
-        ...coin.data(),
-        id: coin.id,
-      }));
+      const { data: coinParse, error } = await supabase
+        .from("coins")
+        .select("*");
       setCoins(coinParse);
 
       //get coins price from wazirx api
       const coinsLivePriceResponse = await axios.get(
-        "https://cors-anywhere.herokuapp.com/https://api.wazirx.com/api/v2/tickers"
+        "https://nitinr-cors.herokuapp.com/https://api.wazirx.com/api/v2/tickers"
       );
       setCoinsLive(coinsLivePriceResponse.data);
-
-      setGotCoins(true);
     };
     fetchData();
   }, []);
 
   const handleCoinDelete = async (id) => {
-    await db.collection("coins").doc(id).delete();
+    const { data, error } = await supabase.from("coins").delete().eq("id", id);
     const coinsNew = coins.filter((coin) => coin.id !== id);
     setCoins(coinsNew);
   };
@@ -45,10 +35,14 @@ const CoinList = () => {
   return (
     <div className={styles.container}>
       <Header />
+      {/* <div className={styles.pl_header}>
+        <div className={styles.title}>Total P/L</div>
+        {totalPl}
+      </div> */}
       {coins.map((coin) => (
         <div
           className={styles.transfer_row}
-          key={coin.date}
+          key={coin.id}
           onDoubleClick={() => {
             const isTrue = window.confirm(
               `Are you sure deleting ${coin.coin} ?`
@@ -66,9 +60,7 @@ const CoinList = () => {
           )}
           <div className={styles.transfer_name_group}>
             <h1 className={styles.transfer_name}>{coin.coin}</h1>
-            <h1 className={styles.transfer_date}>
-              {coin.date.toDate().toDateString()}
-            </h1>
+            <h1 className={styles.transfer_date}>{coin.date}</h1>
           </div>
 
           {Object.keys(coinsLive).length !== 0 && (
