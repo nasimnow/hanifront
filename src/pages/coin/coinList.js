@@ -66,6 +66,10 @@ const CoinList = () => {
 
           {Object.keys(coinsLive).length !== 0 && (
             <>
+              {console.log(
+                coinsLive[coin.coin].sell * coin.quantity -
+                  coin.price * coin.quantity
+              )}
               {coinsLive[coin.coin].sell * coin.quantity -
                 coin.price * coin.quantity <
               0 ? (
@@ -83,10 +87,16 @@ const CoinList = () => {
                 </h1>
               ) : (
                 <h1 className={styles.transfer_amount_credit}>
-                  {(
-                    coinsLive[coin.coin].sell * coin.quantity -
-                    coin.price * coin.quantity
-                  ).toFixed(2)}
+                  {coinsLive[coin.coin].quote_unit === "inr"
+                    ? (
+                        coinsLive[coin.coin].sell * coin.quantity -
+                        coin.price * coin.quantity
+                      ).toFixed(2)
+                    : (
+                        (coinsLive[coin.coin].sell * coin.quantity -
+                          coin.price * coin.quantity) *
+                        coinsLive.usdtinr.sell
+                      ).toFixed(2)}
                 </h1>
               )}
             </>
