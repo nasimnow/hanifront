@@ -20,7 +20,7 @@ const CoinList = () => {
 
       //get coins price from wazirx api
       const coinsLivePriceResponse = await axios.get(
-        "https://nitinr-cors.herokuapp.com/https://api.wazirx.com/api/v2/tickers"
+        "https://nazcors.herokuapp.com//https://api.wazirx.com/api/v2/tickers"
       );
       setCoinsLive(coinsLivePriceResponse.data);
     };

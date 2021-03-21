@@ -23,7 +23,7 @@ const AddCoin = () => {
   useEffect(() => {
     const fetchData = async () => {
       const stocksResponse = await axios.get(
-        "https://nitinr-cors.herokuapp.com/https://api.wazirx.com/api/v2/tickers"
+        "https://nazcors.herokuapp.com//https://api.wazirx.com/api/v2/tickers"
       );
       const coinsArray = Object.getOwnPropertyNames(stocksResponse.data);
       const coinsModified = coinsArray.map((coin) => ({
