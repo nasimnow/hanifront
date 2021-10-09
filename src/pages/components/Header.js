@@ -7,13 +7,10 @@ const Header = () => {
   const menuItems = [
     { id: 1, name: "Home", link: "/" },
     { id: 2, name: "Add", link: "/add" },
-    { id: 3, name: "Coins", link: "/coins" },
   ];
   const history = useHistory();
   const location = useLocation();
-  console.log(
-    location.pathname.slice(1, 2).toUpperCase() + location.pathname.slice(2)
-  );
+
   const currentPath =
     location.pathname.slice(1, 2).toUpperCase() + location.pathname.slice(2);
   const [selected, setSelected] = useState(currentPath ? currentPath : "Home");

@@ -10,13 +10,16 @@
   font-family: "grotesk-bold";
   src: url("../../assets/grotesk-bold.ttf");
 }
-input:focus{
+input:focus {
   outline: none;
 }
 
-
-.container{
-  background-image: radial-gradient(50% 50% at 50% 50%, rgba(27,255, 0, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+.container {
+  background-image: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(27, 255, 0, 0.1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
   background-position: 0px -30vh;
   background-repeat: no-repeat;
   display: flex;
@@ -25,18 +28,17 @@ input:focus{
   min-height: 100vh;
   background-color: rgb(247, 248, 250);
 }
-.title_group{
+.title_group {
   display: flex;
   padding: 10px;
   align-self: flex-start;
   margin-bottom: 10px;
-  .title_main{
+  .title_main {
     color: rgb(168, 168, 168);
     font-family: "grotesk-medium";
     margin-left: 20px;
-   
   }
-  .active{
+  .active {
     color: #000;
   }
 }
@@ -45,15 +47,16 @@ input:focus{
   background-color: white;
   border-radius: 25px;
   margin: 15px;
-  margin-top: 50px; 
+  margin-top: 50px;
   display: flex;
   min-width: 90vw;
   max-width: 90vw;
   padding-top: 20px;
   flex-direction: column;
   align-items: center;
-  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-    .select_account{
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px,
+    rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  .select_account {
     align-self: center;
   }
   .input_container {
@@ -91,7 +94,6 @@ input:focus{
     font-size: 30px;
     height: 60px;
     width: 90%;
-    
   }
   .input_name {
     align-self: center;
@@ -99,7 +101,6 @@ input:focus{
     font-size: 20px;
     height: 50px;
     width: 90%;
-    
   }
   .input_upi {
     align-self: center;
@@ -107,7 +108,6 @@ input:focus{
     font-size: 20px;
     height: 50px;
     width: 90%;
-    
   }
   .submit_button {
     width: 88%;
@@ -116,26 +116,26 @@ input:focus{
     border-radius: 25px;
     height: 70px;
     background-color: #defcf1;
-    color:#07ba79;
+    color: #07ba79;
     margin-bottom: 30px;
 
-&:focus{
-  outline: none;
-}
+    &:focus {
+      outline: none;
+    }
   }
-  
-  .submit_button_active{
+
+  .submit_button_active {
     width: 88%;
     font-family: "grotesk-medium";
     margin: 10px;
     border-radius: 25px;
     height: 70px;
     background-color: #defcf1;
-    color:#07ba79;
+    color: #07ba79;
     margin-bottom: 30px;
     color: white;
     animation: pulse 2s infinite;
-    &:focus{
+    &:focus {
       outline: none;
     }
   }
@@ -148,5 +148,3 @@ input:focus{
     }
   }
 }
-
-

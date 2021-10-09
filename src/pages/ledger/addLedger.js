@@ -4,13 +4,10 @@ import Header from "../components/Header";
 import Select from "react-select";
 import styles from "../css/add_ledger.module.scss";
 
-import firebase from "../../firebase";
 import { useHistory } from "react-router";
 import supabase from "../../supabase";
 
 const AddLedger = () => {
-  const db = firebase.firestore();
-
   const [accounts, setAccounts] = useState([]);
   const [selectedAccount, setSeletcedAccount] = useState(null);
   const [transferAmount, setTransferAmount] = useState("");
@@ -21,17 +18,12 @@ const AddLedger = () => {
   //get all saved accounts
   useEffect(() => {
     const fetchData = async () => {
-      // const accountResponse = await db.collection("account").get();
-      // const accountsParse = accountResponse.docs.map((account) =>
-      //   account.data()
-      // );
       let { data: accountsParse, error } = await supabase
         .from("account")
         .select("*");
-      console.log(accountsParse);
       const accountsFiltered = accountsParse.map((account) => ({
         value: account.id,
-        label: account.full_name,
+        label: account.emoji + " " + account.name,
       }));
       setAccounts(accountsFiltered);
     };
@@ -49,10 +41,14 @@ const AddLedger = () => {
   };
 
   const customStyles = {
+    option: (provided) => ({
+      ...provided,
+      textTransform: "capitalize",
+    }),
     control: (base) => ({
       ...base,
       height: 60,
-      width: 300,
+      width: 250,
       borderRadius: 10,
       minHeight: 50,
     }),
@@ -62,14 +58,13 @@ const AddLedger = () => {
   const handleAddTransfer = async () => {
     console.log({ amount: transferAmount, to: selectedAccount.value });
     const transferObject = {
-      date: new Date(),
       amount: transferAmount,
       to: selectedAccount.value,
     };
     const { data, error } = await supabase
       .from("ledger")
       .insert([transferObject]);
-    console.log(error);
+
     // const addTransfer = await db.collection("ledger").add(transferObject);
     setIsButtonActive(true);
     setTimeout(() => {
@@ -90,10 +85,10 @@ const AddLedger = () => {
               Transaction
             </div>
             <div
-              onClick={() => history.push("/addcoin")}
+              onClick={() => history.push("/add-account")}
               className={styles.title_main}
             >
-              Coin
+              Account
             </div>
           </div>
           <div className={styles.input_container}>

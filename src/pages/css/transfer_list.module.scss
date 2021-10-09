@@ -10,8 +10,12 @@
   font-family: "grotesk-bold";
   src: url("../../assets/grotesk-bold.ttf");
 }
-.container{
-  background-image: radial-gradient(50% 50% at 50% 50%, rgba(27,255, 0, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+.container {
+  background-image: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(27, 255, 0, 0.1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
   background-position: 0px -30vh;
   background-repeat: no-repeat;
   display: flex;
@@ -22,15 +26,20 @@
 }
 .transfer_row {
   margin-top: 20px;
-  width: 100vw;
+  width: 90vw;
   display: flex;
   flex-direction: row;
+  background-color: white;
+  border-radius: 22px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   align-items: center;
+  justify-content: space-around;
 
   .coin_profile {
-    margin-left: 30px;
-    border-radius: 50%;
-    border: 5px solid blue;
+    margin-left: 20px;
+    border-radius: 16px;
+    background-color: #f6f8fa;
     width: 50px;
     height: 50px;
     display: grid;
@@ -60,36 +69,46 @@
     margin-left: auto;
     font-size: 20px;
     color: green;
-    margin-right: 40px;
+    margin-right: 20px;
   }
   .transfer_amount_debit {
     font-family: "grotesk-medium";
     margin-left: auto;
     color: red;
     font-size: 20px;
-    margin-right: 40px;
+    margin-right: 20px;
   }
 }
-.pl_header{
-background: -webkit-linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-border-radius: 10px;
-padding: 10px;
-display: flex;
-justify-content: center;
-margin:10px;
-margin-top: 20px;
-width: 85vw;
-height: 120px;
-color: white;
-.title{
-  margin-top: 10px;
-  font-family: "grotesk-bold";
-  font-size: 20px;
-}
-.pl{
+.pl_header {
+  background: -webkit-linear-gradient(
+    to right,
+    #4bc0c8,
+    #c779d0,
+    #feac5e
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #4bc0c8,
+    #c779d0,
+    #feac5e
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  margin-top: 20px;
+  width: 85vw;
+  height: 120px;
   color: white;
-  font-family: "grotesk-medium";
-  font-size: 30px;
-}
+  .title {
+    margin-top: 10px;
+    font-family: "grotesk-bold";
+    font-size: 20px;
+  }
+  .pl {
+    color: white;
+    font-family: "grotesk-medium";
+    font-size: 30px;
+  }
 }
