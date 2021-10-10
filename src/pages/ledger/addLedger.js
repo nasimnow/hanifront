@@ -10,6 +10,8 @@ import supabase from "../../supabase";
 const AddLedger = () => {
   const [accounts, setAccounts] = useState([]);
   const [selectedAccount, setSeletcedAccount] = useState(null);
+  const [comment, setComment] = useState(null);
+
   const [transferAmount, setTransferAmount] = useState("");
   const [isButtonActive, setIsButtonActive] = useState(false);
 
@@ -60,6 +62,7 @@ const AddLedger = () => {
     const transferObject = {
       amount: transferAmount,
       to: selectedAccount.value,
+      comment,
     };
     const { data, error } = await supabase
       .from("ledger")
@@ -109,6 +112,16 @@ const AddLedger = () => {
               placeholder="0.0"
               value={transferAmount}
               onChange={(e) => setTransferAmount(parseFloat(e.target.value))}
+            />
+          </div>
+          <div className={styles.input_container}>
+            <h1 className={styles.input_label}>Amount</h1>
+            <input
+              className={styles.input_amount}
+              type="text"
+              placeholder="comments"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
             />
           </div>
           {!isButtonActive ? (
